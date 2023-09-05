@@ -48,8 +48,9 @@ public class MultiSender {
     }
 
     public void send(int i) throws MessagingException {
-        mailSender.send(builder.build(files.get(i).getAbsolutePath()));
-        logger.info("{} has been sent.", files.get(i).getAbsolutePath());
+        File fileToSend = files.get(i - 1);
+        mailSender.send(builder.build(fileToSend.getAbsolutePath()));
+        logger.info("{} has been sent.", fileToSend.getAbsolutePath());
     }
 
     public void send(int start, int end) throws MessagingException {
@@ -66,7 +67,7 @@ public class MultiSender {
     }
 
     public void sendAll() throws MessagingException {
-        for (int i = 0; i < files.size(); i++) {
+        for (int i = 1; i <= files.size(); i++) {
             send(i);
         }
     }

@@ -29,8 +29,7 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        splitter.split(filePath);
         MultiSender multiSender = multiSenderBuilder.build(splitterConfig.getOutputDir(), FilenameUtils.getBaseName(filePath));
-        multiSender.sendAll();
+        multiSender.send(6);
     }
 }
